@@ -12,7 +12,13 @@ const createOrder = (req, res) => {
     }
 };
 
+const getOrders = (req, res) => {
+    const orders = orderModel.getAll();
+    res.json(orders);
+}
+
 
 module.exports = {
     createOrder,
+    getOrders,
 };
