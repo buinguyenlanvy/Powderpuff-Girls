@@ -21,7 +21,7 @@ const getSchedule = (req, res) => {
 
 const deleteSchedule = async (req, res) => {
     try {
-        const schedule = Schedule.destroy({ 
+        const schedule = Schedule.deleteData({ 
             where: { 
                 id: req.params.id 
             } 
