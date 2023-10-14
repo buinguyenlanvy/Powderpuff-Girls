@@ -48,5 +48,6 @@ const updateSchedule = (req, res) => {
 module.exports = {
     saveSchedule,
     getSchedule,
-    deleteSchedule
+    deleteSchedule,
+    updateSchedule,
 };
