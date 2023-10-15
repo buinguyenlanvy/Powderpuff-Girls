@@ -17,5 +17,5 @@ app.use('/create-orders', orderRoutes);
 
 // see list of orders
 const getAllOrerByUserId = require('./routes/order.route');
-app.use('/get-orders', orderRoutes);
+app.use('/get-orders', getAllOrerByUserId);
 
