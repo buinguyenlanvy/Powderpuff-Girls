@@ -12,10 +12,6 @@ const loginUser = (req, res) => {
     }
 };
 
-<<<<<<< HEAD
-module.exports = {
-    loginUser,
-=======
 const registerUser = (req, res) => {
     const user = userModel.createUser(req.body);
 
@@ -24,7 +20,7 @@ const registerUser = (req, res) => {
     } else {
         return res.json({ message: 'Tạo tài khoản thành công' });
     }
-}
+};
 
 const getUsers = (req, res) => {
     const users = userModel.getAll();
@@ -74,6 +70,5 @@ module.exports = {
     getUsers,
     getUserById,
     updateUser,
-
->>>>>>> 7db4ba0f34284d5f1c8865a13d05b94a373e920d
+    deleteUser,
 };
