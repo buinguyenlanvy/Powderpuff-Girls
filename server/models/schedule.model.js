@@ -54,6 +54,7 @@ const schedule = () => {
         }
     };
 
+<<<<<<< HEAD
 
     const findMatchingSchedules = async () => {
         try {
@@ -85,14 +86,19 @@ const schedule = () => {
     };
 
 
+=======
+>>>>>>> 7db4ba0f34284d5f1c8865a13d05b94a373e920d
     return {
         create,
         getById,
         getAll,
         update,
         deleteData,
+<<<<<<< HEAD
         findMatchingSchedules,
         findNearbyWorkTimes
+=======
+>>>>>>> 7db4ba0f34284d5f1c8865a13d05b94a373e920d
     };
 };
 
