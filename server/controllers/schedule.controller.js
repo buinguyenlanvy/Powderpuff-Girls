@@ -6,16 +6,25 @@ const saveSchedule = (req, res) => {
         res.status(201).json(schedule);
         schedule.save();
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json({message: 'Lỗi khi tạo lịch hẹn'});
     }
-}
+};
 
-const getSchedule = (req, res) => {
+const getSchedules = (req, res) => {
     try {
-        const schedule = Schedule.find();
+        const schedule = Schedule.getAll();
         res.status(200).json(schedule);
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json({message: 'Lỗi khi lấy danh sách lịch hẹn'});
+    }
+};
+
+const getScheduleById = async (req, res) => {
+    try {
+        const schedule = Schedule.getById(req.params.id);
+        res.status(200).json(schedule);
+    } catch (error) {
+        res.status(500).json({message: 'Lỗi khi lấy lịch hẹn'});
     }
 }
 
@@ -28,9 +37,9 @@ const deleteSchedule = async (req, res) => {
         });
         res.status(200).json(schedule);
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json("message: Lỗi khi xóa lịch hẹn");
     }
-}
+};
 
 const updateSchedule = (req, res) => {
     try {
@@ -41,13 +50,14 @@ const updateSchedule = (req, res) => {
         });
         res.status(200).json(schedule);
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json("message: Lỗi khi cập nhật lịch hẹn");
     }
-}
+};
 
 module.exports = {
     saveSchedule,
-    getSchedule,
+    getSchedules,
+    getScheduleById,
     deleteSchedule,
     updateSchedule,
 };
