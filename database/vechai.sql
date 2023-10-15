@@ -1,6 +1,3 @@
-USE master;
-GO
-
 -- Create the vechai database
 CREATE DATABASE vechai;
 GO
@@ -67,7 +64,10 @@ CREATE TABLE OrderTransaction
 (
     orderId INT IDENTITY(1, 1) PRIMARY KEY,
     timeCreate DATETIME,
-    scheduleId INT 
+    scheduleId INT, 
+	userId INT,
+    FOREIGN KEY (userId) REFERENCES [user](userId),
+
 );
 GO
 
@@ -78,11 +78,9 @@ ADD CONSTRAINT FK_Schedule FOREIGN KEY (scheduleId) references schedule(schedule
 CREATE TABLE DetailOrder
 (
     orderLineId INT IDENTITY(1, 1) PRIMARY KEY,
-    userId INT,
     amount DECIMAL(18, 2) CHECK (amount > 0),
     orderId INT,
     trashcategoryId INT,
-    FOREIGN KEY (userId) REFERENCES [user](userId),
     FOREIGN KEY (orderId) REFERENCES OrderTransaction(orderId),
     FOREIGN KEY (trashcategoryId) REFERENCES TrashCategory(categoryId)
 );
@@ -97,3 +95,4 @@ CREATE TABLE userLocation (
     district NVARCHAR(30),
     city NVARCHAR(30)
 );
+
