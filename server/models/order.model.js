@@ -3,9 +3,9 @@ const { pool: db } = require('../config/database');
 const orderTransaction = () => {
     const create = async (orderTransactionData) => {
         try {
-            const { timeCreate, scheduleId } = orderTransactionData;
-            const sql = 'INSERT INTO OrderTransaction (timeCreate, scheduleId) VALUES (?, ?)';
-            const [result] = await db.query(sql, [timeCreate, scheduleId]);
+            const { timeCreate, scheduleId, userId } = orderTransactionData;
+            const sql = 'INSERT INTO OrderTransaction (timeCreate, scheduleId, userId) VALUES (?, ?, ?)';
+            const [result] = await db.query(sql, [timeCreate, scheduleId, userId]);
             return result.insertId;
         } catch (error) {
             throw new Error('Error creating order transaction');
@@ -54,12 +54,22 @@ const orderTransaction = () => {
         }
     };
 
+    const getOrderByUserId = async (userId) => {
+        try {
+            const sql = 'SELECT * FROM OrderTransaction WHERE userId = ?';
+            await db.query(sql, [userId]);
+        } catch (error) {
+            throw new Error('Error selecting order transaction');
+        }
+    }
+
     return {
         create,
         getById,
         getAll,
         update,
         deleteData,
+        getOrderByUserId
     };
 };
 

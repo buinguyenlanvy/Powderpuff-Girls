@@ -10,6 +10,10 @@ const getAllTrashCategories = (req, res) => {
     }
 };
 
+<<<<<<< HEAD
+module.exports = {
+    getAllTrashCategories,
+=======
 const getTrashCategoryById = (req, res) => {
     try {
         const category = trashCategory().getById(req.params.id);
@@ -54,4 +58,5 @@ module.exports = {
     createTrashCategory,
     updateTrashCategory,
     deleteTrashCategory,
+>>>>>>> 7db4ba0f34284d5f1c8865a13d05b94a373e920d
 };

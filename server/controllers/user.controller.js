@@ -20,7 +20,7 @@ const registerUser = (req, res) => {
     } else {
         return res.json({ message: 'Tạo tài khoản thành công' });
     }
-}
+};
 
 const getUsers = (req, res) => {
     const users = userModel.getAll();

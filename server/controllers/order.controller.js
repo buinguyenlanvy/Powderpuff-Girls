@@ -12,51 +12,18 @@ const createOrder = (req, res) => {
     }
 };
 
-const getOrders = (req, res) => {
-    const orders = orderModel.getAll();
-
-    if (!orders) {
-        res.status(400).json({ message: 'Không thể lấy danh sách hóa đơn' });
-    } else {
+const getAllOrerByUerId = () => {
+    try {
+        const orders = orderModel.getAllOrerByUerId;
         res.json(orders);
+    } catch (error) {
+        res.status(500).json({ message: 'Lỗi khi lấy danh sách hóa đơn' });
     }
-};
+}
 
-const getOrderById = (req, res) => {
-    const order = orderModel.getById(req.params.id);
-
-    if (!order) {
-        res.status(400).json({ message: 'Không thể lấy hóa đơn' });
-    } else {
-        res.json(order);
-    }
-};
-
-const updateOrder = (req, res) => {
-    const { userId, weight, trashCategoryId } = req.body;
-    const order = orderModel.update(req.params.id, userId, weight, trashCategoryId);
-
-    if (!order) {
-        res.status(400).json({ message: 'Không thể cập nhật hóa đơn' });
-    } else {
-        res.json({ message: 'Hóa đơn đã được cập nhật' });
-    }
-};
-
-const deleteOrder = (req, res) => {
-    const order = orderModel.deleteData(req.params.id);
-
-    if (!order) {
-        res.status(400).json({ message: 'Không thể xóa hóa đơn' });
-    } else {
-        res.json({ message: 'Hóa đơn đã được xóa' });
-    }
-};
+// method for get list of all orders
 
 module.exports = {
     createOrder,
-    getOrders,
-    getOrderById,
-    updateOrder,
-    deleteOrder,
+    getAllOrerByUerId
 };

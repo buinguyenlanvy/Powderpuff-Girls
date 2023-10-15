@@ -4,8 +4,8 @@ const detailOrder = () => {
     const create = async (detailOrderData) => {
         try {
             const { userId, amount, orderId, trashcategoryId } = detailOrderData;
-            const sql = 'INSERT INTO detailOrder (userId, amount, orderId, trashcategoryId) VALUES (?, ?, ?, ?)';
-            const [result] = await db.query(sql, [userId, amount, orderId, trashcategoryId]);
+            const sql = 'INSERT INTO detailOrder (amount, orderId, trashcategoryId) VALUES ( ?, ?, ?)';
+            const [result] = await db.query(sql, [amount, orderId, trashcategoryId]);
             return result.insertId;
         } catch (error) {
             throw new Error('Error creating detail order');
