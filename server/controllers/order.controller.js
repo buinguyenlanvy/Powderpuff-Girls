@@ -12,7 +12,18 @@ const createOrder = (req, res) => {
     }
 };
 
+const getAllOrerByUerId = () => {
+    try {
+        const orders = orderModel.getAllOrerByUerId;
+        res.json(orders);
+    } catch (error) {
+        res.status(500).json({ message: 'Lỗi khi lấy danh sách hóa đơn' });
+    }
+}
+
+// method for get list of all orders
 
 module.exports = {
     createOrder,
+    getAllOrerByUerId
 };

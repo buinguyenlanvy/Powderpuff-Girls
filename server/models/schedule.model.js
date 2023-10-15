@@ -54,12 +54,45 @@ const schedule = () => {
         }
     };
 
+
+    const findMatchingSchedules = async () => {
+        try {
+            const sql = `
+                SELECT *
+                FROM (Schedule
+                JOIN WorkTime ON Schedule.worktimeId = WorkTime.worktimeId)
+                JOIN Location ON Location.locationId = Location.locationId;
+            `;
+            const [result] = await db.query(sql);
+            return result;
+        } catch (error) {
+            throw new Error('Lỗi khi lấy thông tin kết hợp từ hai bảng');
+        }
+    };
+
+    const findNearbyWorkTimes = async (scheduleTime, timeThreshold) => {
+        try {
+            const sql = `
+                SELECT *
+                FROM WorkTime
+                WHERE ABS(TIMESTAMPDIFF(SECOND, ?, startWorktimeId)) <= ?;
+            `;
+            const [result] = await db.query(sql, [scheduleTime, timeThreshold]);
+            return result;
+        } catch (error) {
+            throw new Error('Lỗi khi lấy thông tin khung giờ gần với giờ trong Schedule');
+        }
+    };
+
+
     return {
         create,
         getById,
         getAll,
         update,
         deleteData,
+        findMatchingSchedules,
+        findNearbyWorkTimes
     };
 };
 

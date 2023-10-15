@@ -54,12 +54,22 @@ const orderTransaction = () => {
         }
     };
 
+    const getOrderByUserId = async (userId) => {
+        try {
+            const sql = 'SELECT * FROM OrderTransaction WHERE userId = ?';
+            await db.query(sql, [userId]);
+        } catch (error) {
+            throw new Error('Error selecting order transaction');
+        }
+    }
+
     return {
         create,
         getById,
         getAll,
         update,
         deleteData,
+        getOrderByUserId
     };
 };
 
